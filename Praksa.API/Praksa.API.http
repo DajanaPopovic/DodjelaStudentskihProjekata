@@ -1,0 +1,6 @@
+@Praksa.API_HostAddress = http://localhost:5286
+
+GET {{Praksa.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
