@@ -20,8 +20,10 @@ builder.Services.AddScoped<IMentorService, MentorService>();
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAll", policy =>
-        policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+    options.AddPolicy("AllowFrontend", policy =>
+        policy.WithOrigins("https://genuine-pasca-59253f.netlify.app")
+              .AllowAnyMethod()
+              .AllowAnyHeader());
 });
 
 var app = builder.Build();
@@ -37,7 +39,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseMiddleware<ExceptionHandlingMiddleware>();
-app.UseCors("AllowAll");
+app.UseCors("AllowFrontend");
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
